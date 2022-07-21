@@ -44,7 +44,7 @@
 - Replace the file _remoteApiConnections.txt_ located in $(VREPx64_coppelia) with the one stored in this repository
 
 *2 Build and run*
------------------
+=================
 - Open the directory where the _CMakeLists.txt_ of this repository is stored in Visual Studio
 - Set the options WITH_XXX based on the modules you need to use (lines 5-10). IMPORTANT: Keep WITH_FORCE_SENSOR always ON
 - Generate the output build files under the configuration _x86-Release_
