@@ -1,0 +1,311 @@
+#--------------------------------#
+#       EXTERNAL DEVICES         #
+#--------------------------------#
+### Haptic devices List
+TouchDIVER
+
+### Teleoperation device
+Geomagic
+
+### Robot manipulator
+KUKA
+
+### Simulator Software
+V-REP
+#--------------------------------#
+
+#--------------------------------#
+#       SHARED MEMORY NAMES      #
+#--------------------------------#
+### Keyboard Shared Memory Name
+keyboard_shdmem
+#--------------------------------#
+
+#--------------------------------#
+#  HIGH LEVEL FUNCTIONS (HLFs)   #
+#--------------------------------#
+### Log data
+0
+
+### Initial control mode
+# 1: teleoperation
+# 2: autonomous
+# 3: manual guidance
+2
+
+### Online Processing
+1
+
+### Offline dataset log number
+# 485: Abdomen on right kidney lesion (auto)
+# 487: Abdomen on big liver lesion (auto)
+# 507: Gel 25% - linear
+# 509: Gel 25% - sinusoidal
+# 512: Gel 50% - linear
+# 514: Gel 50% - sinusoidal
+# 497: Gel 70% - sinusoidal
+# 499: Gel 70% - linear
+# 535: Gel 50%+70%
+# 528: Gel 25%+50%+70%+glove const vel auto
+# 529: Gel 25%+50%+70%+glove sin vel auto
+# 501: liver const vel auto1
+499
+#--------------------------------#
+
+#--------------------------------#
+#      TASK 1: REGISTRATION      #
+#--------------------------------#
+### Phantom points filename
+PhantomPts.txt
+#--------------------------------#
+
+
+#------------------------------#
+#       TASK 2: RNI-RLS        #
+#------------------------------#
+### Ground Truth Force data
+# (0 = F/T Sensor, 
+#  1 = FRI Residual,
+#  2 = Model-based Residual)
+2
+
+### Forgetting factor
+1.0
+
+### Interaction model
+# (0 = Kelvin-Voigt, 
+#  1 = Gerovich,
+#  2 = normalized Gerovich
+#  3 = normalized Gerovich with constant term)
+3
+
+### Use 3D model information
+0
+
+### Force lowpass filter coefficient
+#0.01 <-- default, 487
+#0.5
+0.01
+
+### Force derivative lowpass filter coefficient
+#0.005 <-- correct one
+# 0.1 <-- good almost for all, 487r
+0.1
+
+### Force derivative contact threshold
+#0.15 <-- (all the others)
+#0.05 <-- 507 (25% const)
+#0.125 <-- good for multi-layer and liver
+#0.075 <-- good for single-layers, 487 e 487r
+0.075
+
+### Covariance reset threshold ratio
+0.8
+
+### Covariance reset frequency
+# 6.66 <-- 499, 497, 501, 528, 507
+# 40 <-- 499, 497, 528, 529, 501
+40
+
+### Tissue rupture window size
+# obsolete
+5
+
+### A posteriori compensation
+1
+
+### Initial variances
+# 2e2, 2e2; <-- this works well for teleop +3layer phantom (477) as you see steps in D signals
+#1e5,1e7;
+#1e4,5.1e6; <-- abdomen right kidney
+#1e3,5.1e5;
+#1e5,1e7; <-- known depths and norm. Ger.
+#1e8,1e13; <-- unknown depths or classic Ger.
+#1e6,3e11;
+#1e5,2.74e12;
+#1e6,6e9;
+#1e6,1e8;
+#1e6,1e8, 1e2;
+#1e6,6e9, 0.0; <-- log 499 with unknown depths and l-norm
+#1e6,6e9, 0.0; <-- log 497 with unknown depths and l-norm
+#1e6,1.11e11, 0.0; <-- log 497 with unknown depths and l-norm
+#1e6,2.835e11, 0.0; <-- log 497 with unknown depths and l-norm
+#1e6,1.3735e11, 0.0; <-- log 497 with unknown depths and l-norm
+#1e8,1e8, 0.0; <-- log 501 with unknown depths and l-norm - liver
+#1e7,3.86023e+12, 0.0; <-- log 501 with unknown depths and l-norm - liver
+#1e6, 1e6, 0.0; <-- log 501 with unknown depths and l-norm - liver
+#1e6, 4.31408e+10, 0.0;
+1e6, 1e6, 0.0;
+
+### sigma0
+#0.01 <-- 499, 497, 528, 529, 501
+#0.1 <-- 528, 501
+#0.12 <-- 529
+#0.022  <-- 487r	
+#0.01
+0.01
+
+### sigma1
+#0.09 <-- 499, 497
+#0.08 <-- 528r, 529r, 501r
+#0.15 <-- 499, 497, 528, 529, 501
+# 0.071 <-- 507
+# 0.03 <-- 487r
+#0.15
+0.15
+#------------------------------#
+
+
+#------------------------------------#
+# TASK 3: AUGMENTED NEEDLE INSERTION #
+#------------------------------------#
+### Use registered Phantom
+1
+
+### Phantom transformation file name
+config\\Trp.txt
+
+### Simulated exploration
+1
+#------------------------------------#
+
+
+#--------------------------------#
+# TASK 4: FRICTION ESTIMATION    #
+#--------------------------------#
+### Batch or recursive
+# (0 = batch, 1 = recursive)
+0
+
+### Estimate gravity
+0
+
+
+### Friction data size
+4
+
+### G-N Batch number of iterations
+100
+
+### Friction parameters filename
+FrictionsParams.txt
+#--------------------------------#
+
+
+#------------------------------------------#
+#             TELEOPERATION CTRL           #
+#------------------------------------------#
+### Force feedback source
+# (0 = F/T sensor, 1 = model-based residual
+0
+
+#------------------------------------------#
+
+
+#--------------------------------#
+#        AUTONOMOUS CTRL         #
+#--------------------------------#
+### Tracking Gain
+0.001
+
+#--------------------------------#
+
+#-------------------------------------------#
+#            MANUAL GUIDANCE CTRL           #
+#-------------------------------------------#
+# Warning: values of threshold and 
+# gains depends on whether the offset
+# in the residual is accounted or not
+# (Refer to KUKA_config.txt for this value).
+# If offset applied, reasonable thresh
+# value is 0.2, otherwise 1.75. Filter
+# residual is always suggested.
+### Residual threshold
+0.2
+
+### Gains vector
+0.15, 0.15, 0.15, 0.15, 0.15, 1.5, 0.20;
+#0.3, 0.3, 0.3, 0.3, 0.6, 1.5, 0.3;
+
+### Filter residual
+1
+
+### Low-pass cut-off frequency
+7.0
+#-------------------------------------------#
+
+
+#--------------------------------#
+#          ROBOT DATA            #
+#--------------------------------#
+### Use Real robot
+0
+
+### Robot config filename
+KUKA_config.txt
+#--------------------------------#
+
+#--------------------------------#
+#         GEOMAGIC DATA          #
+#--------------------------------#
+### Geomagic config filename
+Geomagic_config.txt
+#--------------------------------#
+
+
+#--------------------------------#
+#         PHANTOM DATA           #
+#--------------------------------#
+### Phantom type
+# Abdomen
+# Multilayer gel
+Multilayer gel
+
+### Phantom config filename
+MultiLayerGelPhantom_config.txt
+#--------------------------------#
+
+#-------------------------#
+#        V-REP DATA       #
+#-------------------------#
+### Use V-REP
+1
+
+### Dynamic simulation
+0
+
+### V-REP IP address
+127.0.0.1
+
+### V-REP Object names list
+LBR4p_joint1, LBR4p_joint2, LBR4p_joint3, LBR4p_joint4, LBR4p_joint5, LBR4p_joint6, LBR4p_joint7, KukaOrigin, _Phantom, simForceSensor, EEdummy
+#-------------------------#
+
+#-----------------------------#
+#      FORCE SENSOR DATA      #
+#-----------------------------#
+### Use F/T Sensor
+1
+
+### Real or simulated sensor
+# (This is valid only if the 
+# previous field is equal to 1)
+# 0 = real
+# 1 = simulated
+1
+
+### F/T Sensor config filename
+FTSensor_config.txt
+#-----------------------------#
+
+#--------------------------#
+#    END-EFFECTOR DATA     #
+#--------------------------#
+### Mount end-effector
+1
+
+### end-effector config filename
+Needle_config.txt
+#--------------------------#
+
+

@@ -1,0 +1,18 @@
+#--------------------------------#
+#          GEOMAGIC DATA         #
+#--------------------------------#
+### Linear Velocity scale factor
+0.4
+
+### Angular Velocity scale factor
+0.55
+
+### Force scale factor
+1.0
+
+### Master-Slave rotation matrix (row-wise)
+0, 1, 0, 0, 0, 1, 1, 0, 0;
+
+### Enable force feedback
+0
+#--------------------------------#

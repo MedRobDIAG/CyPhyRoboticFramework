@@ -1,0 +1,12 @@
+#--------------------------------#
+#       TOUCHDIVER DATA          #
+#--------------------------------#
+### Force scale factor
+1.0
+
+### Master-Slave rotation matrix (row-wise)
+0, 0, 1;
+
+### Enable force feedback
+0
+#--------------------------------#

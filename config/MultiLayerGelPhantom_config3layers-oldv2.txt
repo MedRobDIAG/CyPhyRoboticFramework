@@ -1,0 +1,31 @@
+#-----------------------------------#
+#    MULTILAYER GEL PHANTOM DATA    #
+#-----------------------------------#
+# In the following, define a list of
+# entries whose name is "Layer n. X", where
+# 1 < X < N, being N the number of layers 
+# defined above. Each Layer is defined by 
+# the sequence of 1) depth, 2) elasticity (if known) and 
+# 3) viscousity (if known) parameters 
+
+### Number of layers
+3
+
+### Initialize from simulator [TODO]
+# If this option is selected, "Layer n. X" entries are ignored,
+# while shape names are taken into account to load data from the 
+# simulator [TODO] 
+0
+
+### Layer n. 1
+#0.0181,0.0, 0.0;
+0.0282,0.0, 0.0;
+
+### Layer n. 2
+#0.0248, 0.0, 0.0;
+0.0377, 0.0, 0.0;
+
+### Layer n. 3
+#0.0181, 0.0, 0.0;
+0.0322, 0.0, 0.0;
+#-----------------------------------#
