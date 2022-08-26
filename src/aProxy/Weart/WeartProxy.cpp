@@ -47,7 +47,7 @@ void WeartProxy::run() {
 	//this->client = new WeArtClient("169.254.89.218", WeArtConstants::DEFAULT_TCP_PORT); //IP ADDRESS and PORT of Middleware PC
 	//this->client = new WeArtClient("10.90.64.229", WeArtConstants::DEFAULT_TCP_PORT); //IP ADDRESS and PORT of Middleware PC
 	//this->client = new WeArtClient("10.195.132.173", WeArtConstants::DEFAULT_TCP_PORT); //IP ADDRESS and PORT of Middleware PC
-	this->client = new WeArtClient("10.90.64.229", WeArtConstants::DEFAULT_TCP_PORT); //IP ADDRESS and PORT of Middleware PC
+	this->client = new WeArtClient("10.10.196.210", WeArtConstants::DEFAULT_TCP_PORT); //IP ADDRESS and PORT of Middleware PC
 
 	
 	// create haptic object to manage actuation on Righ hand and Index Thimble

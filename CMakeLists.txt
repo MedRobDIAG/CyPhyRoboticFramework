@@ -6,8 +6,8 @@ set(WITH_FRI OFF)
 set(WITH_FORCE_SENSOR ON)
 set(WITH_GEOMAGIC ON)
 set(WITH_ARMBAND OFF)
-set(WITH_HRING OFF)
-set(WITH_WEART ON)
+set(WITH_HRING ON)
+set(WITH_WEART OFF)
 
 # CMake definitions
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -27,20 +27,6 @@ add_definitions(
     -D_CONSOLE
 )
 
-# Boost 
-#SET(CMAKE_INCLUDE_PATH $ENV{BOOST_1_66} ${CMAKE_INCLUDE_PATH})
-#SET(CMAKE_LIBRARY_PATH $ENV{BOOST_1_66}\\stage\\lib $ENV{BOOST_1_66}\\..\\lib ${CMAKE_LIBRARY_PATH})
-#set(Boost_USE_STATIC_LIBS ON) 
-#set(Boost_USE_MULTITHREADED ON)  
-#set(Boost_USE_STATIC_RUNTIME OFF) 
-#set(Boost_NO_SYSTEM_PATHS FALSE)
-#if (Boost_NO_SYSTEM_PATHS)
-#  set(BOOST_ROOT $ENV{BOOST_1_66})
-#  set(Boost_INCLUDE_DIR ${BOOST_ROOT})
-#  set(Boost_LIBRARY_DIR ${BOOST_ROOT}stage\\lib)
-#endif (Boost_NO_SYSTEM_PATHS)
-#find_package(Boost REQUIRED date_time thread)
-
 ### Default include directories
 include_directories(
     ${CMAKE_CURRENT_LIST_DIR}/include
@@ -49,8 +35,6 @@ include_directories(
     ${CMAKE_CURRENT_LIST_DIR}/include/bController
     ${CMAKE_CURRENT_LIST_DIR}/include/cEntity
     ${CMAKE_CURRENT_LIST_DIR}/include/dDatabase
-    #${Boost_INCLUDE_DIRS}
-    #$ENV{BOOST_1_66}
     $ENV{EIGEN}
     $ENV{VREPx64_coppelia}/programming/include/
     $ENV{VREPx64_coppelia}/programming/remoteApi/
@@ -144,10 +128,8 @@ file(GLOB SRCS ${SRCS_FILES})
 # Project compile definitions
 add_compile_definitions(PROJECT_NAME)
 
-message(${SRCS})
 # Specify exe file to generate
 add_executable(${PROJECT_NAME} ${SRCS})
-#add_executable(${PROJECT_NAME} ${SRCS_FILES})
 
 # Set compiling and linker options
 #set_target_properties(${PROJECT_NAME} PROPERTIES COMMON_LANGUAGE_RUNTIME "")
@@ -156,10 +138,8 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /FORCE:MULTIPLE /SUBSYSTEM
 
 #### Collect the external library dependency list
 set(EXT_LIBS ${EXT_LIBS}  
-    #${Boost_LIBRARIES} 
     ${CMAKE_CURRENT_LIST_DIR}/lib/LWR_Dynamic_Model_Lib.lib)
 if(WITH_FRI)
-    #target_link_libraries(${PROJECT_NAME} 
     set(EXT_LIBS ${EXT_LIBS}
     $ENV{FRI}Windows\\pthread\\Release\\pthreadVC.lib
     $ENV{FRI}Windows\\Release\\TypeIRML.lib

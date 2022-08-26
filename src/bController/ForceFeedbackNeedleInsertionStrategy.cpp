@@ -245,6 +245,12 @@ int ForceFeedbackNeedleInsertionStrategy::execTask() {
 		// Send the force feedback signal on CoppeliaSim/V-REP
 		this->vrep->setFloatSignal("forceFeedback", this->forcefeedback(Y_AXIS), simx_opmode_oneshot, this->simPort);
 	}
+	else if (hapticListNames[chosenHapticIdx] == "HRing") {
+		this->forcefeedback = f_feedback[0]; // total force
+
+		// Send the force feedback signal on CoppeliaSim/V-REP
+		this->vrep->setFloatSignal("forceFeedback", this->forcefeedback(Y_AXIS), simx_opmode_oneshot, this->simPort);
+	}
 	this->haptics[hapticListNames[chosenHapticIdx]]->setForceFeedback(this->forcefeedback);//*/
 
 

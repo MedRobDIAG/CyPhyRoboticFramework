@@ -238,7 +238,7 @@ void HRingProxy::run() {
 
 	/* Choose the baud rate (bits per second).
 	* If the Maestro's serial mode is USB Dual Port, this number does not matter. */
-	portName = "COM4";  // Each double slash in this source code represents one slash in the actual name.
+	portName = "COM8";  // Each double slash in this source code represents one slash in the actual name.
 	baudRate = 9600;
 
 	/* Open the Maestro's serial port. */
@@ -266,7 +266,6 @@ void HRingProxy::run() {
 		// Send the haptic force on the device
 		float fx = this->hapticState.force(HRING_DIRS::X_DIR);
 		float fz = this->hapticState.force(HRING_DIRS::Z_DIR);
-
 		fx = (fx < MAX_FLOAT_FORCE_VAL) ? ((fx > -MAX_FLOAT_FORCE_VAL) ? fx : (-MAX_FLOAT_FORCE_VAL)) : MAX_FLOAT_FORCE_VAL;
 		fz = (fz < MAX_FLOAT_FORCE_VAL) ? ((fz > -MAX_FLOAT_FORCE_VAL) ? fz : (-MAX_FLOAT_FORCE_VAL)) : MAX_FLOAT_FORCE_VAL;
 
