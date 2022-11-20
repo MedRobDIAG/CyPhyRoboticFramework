@@ -4,9 +4,9 @@ project(MRframework VERSION 0.1 LANGUAGES C CXX)
 # Set external system dependencies for each module
 set(WITH_FRI OFF)
 set(WITH_FORCE_SENSOR ON)
-set(WITH_GEOMAGIC ON)
+set(WITH_GEOMAGIC OFF)
 set(WITH_ARMBAND OFF)
-set(WITH_HRING ON)
+set(WITH_HRING OFF)
 set(WITH_WEART OFF)
 
 # CMake definitions
@@ -133,7 +133,12 @@ add_executable(${PROJECT_NAME} ${SRCS})
 
 # Set compiling and linker options
 #set_target_properties(${PROJECT_NAME} PROPERTIES COMMON_LANGUAGE_RUNTIME "")
-target_compile_options(${PROJECT_NAME} PUBLIC "/Gy;/Oi;/sdl;/MP;/ZW;/AI$ENV{WINDOWS_WINMD_PATH};/AI$ENV{PLATFORM_WINMD_PATH}")
+target_compile_options(${PROJECT_NAME} PUBLIC "/Gy;/Oi;/sdl;/MP;/ZW;")
+if(WITH_WEART)
+    message("Adding Windows and Platform winmd paths")
+    target_compile_options(${PROJECT_NAME} PUBLIC "/AI$ENV{WINDOWS_WINMD_PATH};/AI$ENV{PLATFORM_WINMD_PATH}")
+endif()
+
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /FORCE:MULTIPLE /SUBSYSTEM:CONSOLE /ENTRY:mainCRTStartup")
 
 #### Collect the external library dependency list

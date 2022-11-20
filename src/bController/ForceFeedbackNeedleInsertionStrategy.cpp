@@ -345,7 +345,7 @@ std::vector < Eigen::VectorXf > ForceFeedbackNeedleInsertionStrategy::computeFor
 		this->staticPhantom.setLayerPunctured(this->currentLayerID, true);
 	}
 
-	fb_s(Z_AXIS) = fEl +fFric + fSumFric;
+	fb_s(Z_AXIS) = fEl + fFric + fSumFric;
 
 	fb_m = hapticRms * fb_s;
 	if (std::fabs(fb_m(Y_AXIS)) > 2) {
